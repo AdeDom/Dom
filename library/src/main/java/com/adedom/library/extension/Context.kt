@@ -35,7 +35,7 @@ fun Context.completed() = Toast.makeText(this, R.string.completed, Toast.LENGTH_
 
 const val PREF_FILE = "PREF_FILE"
 //setPrefFile(PLAYER_ID, playerId)
-fun Context.setPrefFile(key: String, values: String?) {
+fun Context.setPrefFile(key: String, values: String) {
     this.getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE).edit()
         .putString(key, values)
         .apply()
