@@ -1,4 +1,4 @@
-package com.adedom.library
+package com.adedom.library.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
