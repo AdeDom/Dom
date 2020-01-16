@@ -5,10 +5,14 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import android.location.Geocoder
 import android.text.format.DateFormat
 import android.widget.Toast
 import com.adedom.library.R
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import java.util.*
 
 //holder.itemView.tvPlace.context.getLocality(latitude, longitude)
@@ -87,4 +91,25 @@ fun Context.dialogTimePicker(time: (Int, Int) -> Unit) {
         DateFormat.is24HourFormat(this)
     )
     t.show()
+}
+
+//context.loadBitmap(url, {onResourceReady}, {onLoadCleared})
+fun Context.loadBitmap(
+    url: String,
+    onResourceReady: (Bitmap) -> Unit,
+    onLoadCleared: (() -> Unit)? = null
+) {
+    Glide.with(this)
+        .asBitmap()
+        .load(url)
+        .circleCrop()
+        .into(object : CustomTarget<Bitmap>() {
+            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                onResourceReady.invoke(resource)
+            }
+
+            override fun onLoadCleared(placeholder: Drawable?) {
+                onLoadCleared?.invoke()
+            }
+        })
 }

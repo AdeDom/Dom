@@ -1,0 +1,22 @@
+package com.adedom.library.data
+
+const val KEY_RESULT = "result"
+const val KEY_VALUES1 = "values1"
+const val KEY_VALUES2 = "values2"
+const val KEY_VALUES3 = "values3"
+const val KEY_VALUES4 = "values4"
+const val KEY_VALUES5 = "values5"
+const val KEY_VALUES6 = "values6"
+const val KEY_VALUES7 = "values7"
+const val KEY_VALUES8 = "values8"
+const val KEY_VALUES9 = "values9"
+const val KEY_VALUES10 = "values10"
+const val KEY_VALUES11 = "values11"
+const val KEY_VALUES12 = "values12"
+const val KEY_VALUES13 = "values13"
+const val KEY_VALUES14 = "values14"
+const val KEY_VALUES15 = "values15"
+
+const val KEY_EMPTY = "empty"
+const val KEY_DATE = "yyyy-MM-dd"
+const val KEY_TIME = "HH:mm:ss"
