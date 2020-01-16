@@ -1,5 +1,6 @@
 package com.adedom.library.util
 
+import com.adedom.library.R
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.*
 import java.text.SimpleDateFormat
@@ -39,7 +40,7 @@ fun setCircle(googleMap: GoogleMap?, latLng: LatLng, radius: Double) {
     myCircle = googleMap!!.addCircle(
         CircleOptions().center(latLng)
             .radius(radius)
-            .fillColor(android.R.color.white)
+            .fillColor(R.color.colorWhite)
             .strokeColor(android.R.color.white)
             .strokeWidth(5f)
     )
