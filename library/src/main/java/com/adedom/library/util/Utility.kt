@@ -34,32 +34,6 @@ fun setMarker(
     )
 }
 
-//setMarkerList(
-//    markerPlayers,
-//    MapActivity.sGoogleMap!!,
-//    latLng,
-//    BitmapDescriptorFactory.fromBitmap(it),
-//    item.name,
-//    getLevel(item.level)
-//)
-fun setMarkerList(
-    markers: ArrayList<Marker>,
-    googleMap: GoogleMap?,
-    latLng: LatLng,
-    icon: BitmapDescriptor,
-    title: String? = null,
-    snippet: String? = null
-) {
-    markers.add(
-        googleMap!!.addMarker(
-            MarkerOptions().position(latLng)
-                .icon(icon)
-                .title(title)
-                .snippet(snippet)
-        )
-    )
-}
-
 //setCircle(MapActivity.sGoogleMap, latLng, RADIUS_ONE_HUNDRED_METER)
 fun setCircle(googleMap: GoogleMap?, latLng: LatLng, radius: Double) {
     myCircle = googleMap!!.addCircle(
@@ -71,14 +45,3 @@ fun setCircle(googleMap: GoogleMap?, latLng: LatLng, radius: Double) {
     )
 }
 
-//removeMarker(myLocation)
-fun removeMarker(marker: Marker?) = marker?.remove()
-
-//removeMarkerList(markerPlayers)
-fun removeMarkerList(markers: ArrayList<Marker>) {
-    for (marker in markers) marker.remove()
-    markers.clear()
-}
-
-//removeCircle(myCircle)
-fun removeCircle(circle: Circle?) = circle?.remove()
