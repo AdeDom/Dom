@@ -14,7 +14,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
-class SettingPermissionAndLocation : AppCompatActivity() {
+class SettingPermissionAndLocation(
+    private val activity: Activity,
+    private val context: Context
+) : AppCompatActivity() {
 
     init {
         requestPermission()
@@ -25,13 +28,13 @@ class SettingPermissionAndLocation : AppCompatActivity() {
     companion object {
         private lateinit var mLocationSwitchStateReceiver: BroadcastReceiver
 
-        fun Activity.locationListener(boolean: Boolean) {
+        fun locationListener(activity: Activity, boolean: Boolean) {
             if (boolean) {
                 val filter = IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION)
                 filter.addAction(Intent.ACTION_PROVIDER_CHANGED)
-                this.registerReceiver(mLocationSwitchStateReceiver, filter)
+                activity.registerReceiver(mLocationSwitchStateReceiver, filter)
             } else {
-                this.unregisterReceiver(mLocationSwitchStateReceiver)
+                activity.unregisterReceiver(mLocationSwitchStateReceiver)
             }
         }
     }
@@ -39,11 +42,11 @@ class SettingPermissionAndLocation : AppCompatActivity() {
     private fun requestPermission() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
             val result =
-                ContextCompat.checkSelfPermission(this, Manifest.permission.GET_ACCOUNTS)
+                ContextCompat.checkSelfPermission(context, Manifest.permission.GET_ACCOUNTS)
             val permission = result == PackageManager.PERMISSION_GRANTED
             if (!permission) {
                 ActivityCompat.requestPermissions(
-                    this,
+                    activity,
                     arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                     1
                 )
@@ -69,14 +72,14 @@ class SettingPermissionAndLocation : AppCompatActivity() {
     }
 
     private fun locationSetting() {
-        if (!verifyGPS()) {
-            this.startActivityForResult(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), 1234)
-            this.finishAffinity()
+        if (!locationSetting(context)) {
+            activity.startActivityForResult(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), 1234)
+            activity.finishAffinity()
         }
     }
 
-    private fun verifyGPS(): Boolean {
-        val contentResolver = this.contentResolver
+    private fun locationSetting(context: Context): Boolean {
+        val contentResolver = context.contentResolver
         return Settings.Secure.isLocationProviderEnabled(
             contentResolver,
             LocationManager.GPS_PROVIDER
