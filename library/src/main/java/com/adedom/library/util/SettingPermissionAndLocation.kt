@@ -14,7 +14,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
-class Setting(private val activity: Activity, private val context: Context) : AppCompatActivity() {
+class SettingPermissionAndLocation(
+    private val activity: Activity,
+    private val context: Context
+) : AppCompatActivity() {
 
     init {
         requestPermission()
@@ -25,13 +28,13 @@ class Setting(private val activity: Activity, private val context: Context) : Ap
     companion object {
         private lateinit var mLocationSwitchStateReceiver: BroadcastReceiver
 
-        fun locationListener(activity: Activity, boolean: Boolean) {
+        fun Activity.locationListener(boolean: Boolean) {
             if (boolean) {
                 val filter = IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION)
                 filter.addAction(Intent.ACTION_PROVIDER_CHANGED)
-                activity.registerReceiver(mLocationSwitchStateReceiver, filter)
+                this.registerReceiver(mLocationSwitchStateReceiver, filter)
             } else {
-                activity.unregisterReceiver(mLocationSwitchStateReceiver)
+                this.unregisterReceiver(mLocationSwitchStateReceiver)
             }
         }
     }

@@ -9,7 +9,7 @@ import com.bumptech.glide.request.RequestOptions
 fun ImageView.loadCircle(url: String) {
     Glide.with(this)
         .load(url)
-        .apply(RequestOptions.placeholderOf(R.drawable.ic_image_black))
+        .apply(RequestOptions.placeholderOf(R.drawable.ic_user_black))
         .circleCrop()
         .into(this)
 }

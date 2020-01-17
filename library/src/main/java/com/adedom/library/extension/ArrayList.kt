@@ -7,14 +7,14 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import java.util.*
 
-//markerPlayers.setMarkerList(
+//markerPlayers.setMarkers(
 //    MapActivity.sGoogleMap,
 //    latLng,
 //    BitmapDescriptorFactory.fromResource(R.drawable.ic_player),
 //    item.name!!,
 //    getLevel(item.level)
 //)
-fun ArrayList<Marker>.setMarkerList(
+fun ArrayList<Marker>.setMarkers(
     googleMap: GoogleMap?,
     latLng: LatLng,
     icon: BitmapDescriptor,
@@ -31,8 +31,8 @@ fun ArrayList<Marker>.setMarkerList(
     )
 }
 
-//markerPlayers.removeMarkerList()
-fun ArrayList<Marker>.removeMarkerList() {
+//markerPlayers.removeMarkers()
+fun ArrayList<Marker>.removeMarkers() {
     for (marker in this) marker.remove()
     this.clear()
 }

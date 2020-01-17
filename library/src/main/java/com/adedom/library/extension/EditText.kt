@@ -14,9 +14,9 @@ fun EditText.isEmpty(error: String): Boolean {
     return false
 }
 
-//mEtPassword.checkLess4(getString(R.string.error_password_less)) -> return
-fun EditText.checkLess4(error: String): Boolean {
-    if (this.text.toString().trim().length < 4) {
+//mEtPassword.verifyLength(4, "error") -> return
+fun EditText.verifyLength(length: Int, error: String = ""): Boolean {
+    if (this.text.toString().trim().length < length) {
         this.requestFocus()
         this.error = error
         return true
