@@ -1,4 +1,4 @@
-package com.adedom.library.data
+package com.adedom.library.util
 
 const val KEY_RESULT = "result"
 const val KEY_VALUES1 = "values1"
