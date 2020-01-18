@@ -14,8 +14,8 @@ fun EditText.isEmpty(error: String): Boolean {
     return false
 }
 
-//mEtPassword.verifyLength(4, "error") -> return
-fun EditText.verifyLength(length: Int, error: String = ""): Boolean {
+//mEtPassword.isLength(4, "error") -> return
+fun EditText.isLength(length: Int, error: String = ""): Boolean {
     if (this.text.toString().trim().length < length) {
         this.requestFocus()
         this.error = error
@@ -44,4 +44,17 @@ fun EditText.failed(message: String = "") {
         requestFocus()
         error = message
     }
+}
+
+//mEtNewPassword.isMatching(
+//    mEtRePassword,
+//    getString("error")
+//) -> return
+fun EditText.isMatching(editText: EditText, error: String = ""): Boolean {
+    if (this.getContent() != editText.getContent()) {
+        editText.requestFocus()
+        editText.error = error
+        return true
+    }
+    return false
 }
