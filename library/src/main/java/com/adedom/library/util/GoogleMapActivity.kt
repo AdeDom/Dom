@@ -8,7 +8,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
 import android.view.WindowManager
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.adedom.library.R
+import com.adedom.library.extension.dialogNegative
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationListener
@@ -32,6 +35,7 @@ abstract class GoogleMapActivity(
     private lateinit var mGoogleApiClient: GoogleApiClient
     private lateinit var mLocationRequest: LocationRequest
     private lateinit var mHandler: Handler
+    private var isCamera: Boolean = true
 
     companion object {
         lateinit var sContext: Context
@@ -49,6 +53,9 @@ abstract class GoogleMapActivity(
         sActivity = this
 
         mHandler = Handler()
+
+//        SettingPermissionAndLocation(sActivity, sContext)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -103,6 +110,8 @@ abstract class GoogleMapActivity(
     override fun onResume() {
         super.onResume()
 
+//        SettingPermissionAndLocation.locationListener(sActivity, true)
+
         mRunnable.run()
 
         if (mGoogleApiClient.isConnected) startLocationUpdate()
@@ -110,6 +119,8 @@ abstract class GoogleMapActivity(
 
     override fun onPause() {
         super.onPause()
+
+//        SettingPermissionAndLocation.locationListener(sActivity, false)
 
         mHandler.removeCallbacks(mRunnable)
 
@@ -128,6 +139,11 @@ abstract class GoogleMapActivity(
         ) return
 
         sLatLng = LatLng(location.latitude, location.longitude)
+
+        if (isCamera) {
+            isCamera = false
+            setCamera(15F, 12F)
+        }
     }
 
     fun setCamera(zoom: Float, minZoom: Float = 1F, maxZoom: Float = 20F) {
@@ -143,7 +159,10 @@ abstract class GoogleMapActivity(
         sGoogleMap!!.isMyLocationEnabled = true
     }
 
-    override fun onBackPressed() = mHandler.removeCallbacks(mRunnable)
+    override fun onBackPressed() {
+        mHandler.removeCallbacks(mRunnable)
+        AlertDialog.Builder(this@GoogleMapActivity).dialogNegative(R.string.exit) { finish() }
+    }
 
     open fun onActivityRunning() {}
 

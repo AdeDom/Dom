@@ -46,3 +46,5 @@ fun setCircle(googleMap: GoogleMap?, latLng: LatLng, radius: Double) {
     )
 }
 
+fun getKeyUUID() = UUID.randomUUID().toString().replace("-", "")
+
