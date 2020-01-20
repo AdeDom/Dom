@@ -50,13 +50,13 @@ fun setCircle(googleMap: GoogleMap?, latLng: LatLng, radius: Double) {
 
 fun getKeyUUID() = UUID.randomUUID().toString().replace("-", "")
 
-var mediaPlayerLooping: MediaPlayer? = null
+var mediaPlayerMusic: MediaPlayer? = null
 //playMusic(baseContext, R.raw.music)
 fun playMusic(context: Context, music: Int) {
-    if (mediaPlayerLooping == null)
-        mediaPlayerLooping = MediaPlayer.create(context, music)
+    if (mediaPlayerMusic == null)
+        mediaPlayerMusic = MediaPlayer.create(context, music)
 
-    mediaPlayerLooping.apply {
+    mediaPlayerMusic.apply {
         this!!.start()
         isLooping = true
     }
@@ -64,14 +64,18 @@ fun playMusic(context: Context, music: Int) {
 
 //pauseMusic()
 fun pauseMusic() {
-    if (mediaPlayerLooping != null)
-        mediaPlayerLooping!!.pause()
+    if (mediaPlayerMusic != null)
+        mediaPlayerMusic!!.pause()
 }
 
 //stopMusic()
 fun stopMusic() {
-    if (mediaPlayerLooping != null) {
-        mediaPlayerLooping!!.stop()
-        mediaPlayerLooping = null
+    if (mediaPlayerMusic != null) {
+        mediaPlayerMusic!!.stop()
+        mediaPlayerMusic = null
     }
 }
+
+//playSound(baseContext, R.raw.sound)
+fun playSound(context: Context, music: Int) = MediaPlayer.create(context, music).start()
+

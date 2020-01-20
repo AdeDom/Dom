@@ -11,25 +11,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="start"
-        android:text="Play" />
+        android:onClick="soundButton"
+        android:text="Sound Button" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="pause"
-        android:text="Pause" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="stop"
-        android:text="Stop" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="main2"
-        android:text="main2" />
+        android:onClick="soundKeep"
+        android:text="Sound Keep" />
 
 </LinearLayout>
