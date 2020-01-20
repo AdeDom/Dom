@@ -8,17 +8,24 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.location.Geocoder
 import android.text.format.DateFormat
+import android.widget.TextView
 import android.widget.Toast
 import com.adedom.library.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.google.android.gms.maps.model.LatLng
 import java.util.*
 
 //holder.itemView.tvPlace.context.getLocality(latitude, longitude)
-fun Context.getLocality(latitude: Double, longitude: Double): String {
-    val list = Geocoder(this).getFromLocation(latitude, longitude, 1)
+fun Context.getLocality(latLng: LatLng): String {
+    val list = Geocoder(this).getFromLocation(latLng.latitude, latLng.longitude, 1)
     return if (list[0].locality != null) list[0].locality else getString(R.string.unknown)
+}
+
+//baseContext.setLocality(mTvLocality, sLatLng)
+fun Context.setLocality(textView: TextView, latLng: LatLng) {
+    textView.text = this.getLocality(latLng)
 }
 
 //baseContext.toast("text")
