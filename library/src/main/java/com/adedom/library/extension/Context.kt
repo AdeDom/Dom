@@ -17,9 +17,15 @@ import com.bumptech.glide.request.transition.Transition
 import com.google.android.gms.maps.model.LatLng
 import java.util.*
 
-//holder.itemView.tvPlace.context.getLocality(latitude, longitude)
+//context.getLocality(latLng)
 fun Context.getLocality(latLng: LatLng): String {
     val list = Geocoder(this).getFromLocation(latLng.latitude, latLng.longitude, 1)
+    return if (list[0].locality != null) list[0].locality else getString(R.string.unknown)
+}
+
+//context.getLocality(latitude, longitude)
+fun Context.getLocality(latitude: Double, longitude: Double): String {
+    val list = Geocoder(this).getFromLocation(latitude, longitude, 1)
     return if (list[0].locality != null) list[0].locality else getString(R.string.unknown)
 }
 
