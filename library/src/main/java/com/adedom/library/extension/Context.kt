@@ -34,6 +34,11 @@ fun Context.setLocality(textView: TextView, latLng: LatLng) {
     textView.text = this.getLocality(latLng)
 }
 
+//baseContext.setLocality(mTvLocality, latitude, longitude)
+fun Context.setLocality(textView: TextView, latitude: Double, longitude: Double) {
+    textView.text = this.getLocality(LatLng(latitude, longitude))
+}
+
 //baseContext.toast("text")
 fun Context.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, message, duration).show()
