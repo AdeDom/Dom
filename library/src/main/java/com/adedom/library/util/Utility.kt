@@ -1,5 +1,7 @@
 package com.adedom.library.util
 
+import android.content.Context
+import android.media.MediaPlayer
 import com.adedom.library.R
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.*
@@ -48,3 +50,28 @@ fun setCircle(googleMap: GoogleMap?, latLng: LatLng, radius: Double) {
 
 fun getKeyUUID() = UUID.randomUUID().toString().replace("-", "")
 
+var mediaPlayerLooping: MediaPlayer? = null
+//playMusic(baseContext, R.raw.music)
+fun playMusic(context: Context, music: Int) {
+    if (mediaPlayerLooping == null)
+        mediaPlayerLooping = MediaPlayer.create(context, music)
+
+    mediaPlayerLooping.apply {
+        this!!.start()
+        isLooping = true
+    }
+}
+
+//pauseMusic()
+fun pauseMusic() {
+    if (mediaPlayerLooping != null)
+        mediaPlayerLooping!!.pause()
+}
+
+//stopMusic()
+fun stopMusic() {
+    if (mediaPlayerLooping != null) {
+        mediaPlayerLooping!!.stop()
+        mediaPlayerLooping = null
+    }
+}

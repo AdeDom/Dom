@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".Main2Activity">
 
     <Button
         android:layout_width="wrap_content"
@@ -25,11 +25,5 @@
         android:layout_height="wrap_content"
         android:onClick="stop"
         android:text="Stop" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="main2"
-        android:text="main2" />
 
 </LinearLayout>
