@@ -5,10 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<E>(
+abstract class BaseRecyclerViewAdapter<E>(
     private val resource: () -> Int,
-    private val bindView: (holder: BaseAdapter<E>.BaseHolder, position: Int, items: ArrayList<E>) -> Unit
-) : RecyclerView.Adapter<BaseAdapter<E>.BaseHolder>() {
+    private val bindView: (holder: BaseRecyclerViewAdapter<E>.BaseHolder, position: Int, items: ArrayList<E>) -> Unit
+) : RecyclerView.Adapter<BaseRecyclerViewAdapter<E>.BaseHolder>() {
 
     private var items = ArrayList<E>()
     var onItemClick: ((E) -> Unit)? = null
