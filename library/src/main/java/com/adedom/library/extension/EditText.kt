@@ -33,7 +33,7 @@ fun EditText.textChanged(afterTextChanged: (String) -> Unit) {
         override fun afterTextChanged(p0: Editable?) {}
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(editable: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            afterTextChanged.invoke(editable.toString())
+            afterTextChanged.invoke(editable.toString().trim())
         }
     })
 }

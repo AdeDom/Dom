@@ -2,6 +2,7 @@ package com.adedom.library.extension
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
+//mSwipeRefreshLayout.setSwipeRefresh { fetchPlayers() }
 fun SwipeRefreshLayout.setSwipeRefresh(refresh: () -> Unit) {
     this.apply {
         setColorSchemeResources(
