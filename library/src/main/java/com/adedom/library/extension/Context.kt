@@ -19,6 +19,7 @@ import java.util.*
 
 //context.getLocality(latLng)
 fun Context.getLocality(latLng: LatLng): String {
+    if (latLng == LatLng(0.0, 0.0)) return getString(R.string.unknown)
     val list = Geocoder(this).getFromLocation(latLng.latitude, latLng.longitude, 1)
     return if (list[0].locality != null) list[0].locality else getString(R.string.unknown)
 }

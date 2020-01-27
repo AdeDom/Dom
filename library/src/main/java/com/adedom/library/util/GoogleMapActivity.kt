@@ -134,6 +134,8 @@ abstract class GoogleMapActivity(
     override fun onConnectionFailed(p0: ConnectionResult) {}
 
     override fun onLocationChanged(location: Location?) {
+        if (sLatLng == LatLng(0.0, 0.0)) return
+
         if (sLatLng.latitude == location!!.latitude &&
             sLatLng.longitude == location.longitude
         ) return
