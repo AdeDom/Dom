@@ -30,6 +30,21 @@ fun AlertDialog.Builder.dialogNegative(
 
 fun AlertDialog.Builder.dialogNegative(
     title: Int,
+    message: String,
+    icon: Int,
+    negative: () -> Unit
+) {
+    this.setTitle(title)
+        .setMessage(message)
+        .setIcon(icon)
+        .setPositiveButton(R.string.no) { dialog, which -> dialog.dismiss() }
+        .setNegativeButton(R.string.yes) { dialog, which ->
+            negative.invoke()
+        }.show()
+}
+
+fun AlertDialog.Builder.dialogNegative(
+    title: Int,
     negative: () -> Unit
 ) {
     this.setTitle(title)
@@ -39,3 +54,40 @@ fun AlertDialog.Builder.dialogNegative(
         }.show()
 }
 
+fun AlertDialog.Builder.dialogPositive(
+    title: Int,
+    message: Int,
+    icon: Int,
+    positive: () -> Unit
+) {
+    this.setTitle(title)
+        .setMessage(message)
+        .setIcon(icon)
+        .setPositiveButton(R.string.yes) { dialog, which -> positive.invoke() }
+        .setNegativeButton(R.string.no) { dialog, which -> dialog.dismiss() }
+        .show()
+}
+
+fun AlertDialog.Builder.dialogPositive(
+    title: Int,
+    message: String,
+    icon: Int,
+    positive: () -> Unit
+) {
+    this.setTitle(title)
+        .setMessage(message)
+        .setIcon(icon)
+        .setPositiveButton(R.string.yes) { dialog, which -> positive.invoke() }
+        .setNegativeButton(R.string.no) { dialog, which -> dialog.dismiss() }
+        .show()
+}
+
+fun AlertDialog.Builder.dialogPositive(
+    title: Int,
+    positive: () -> Unit
+) {
+    this.setTitle(title)
+        .setPositiveButton(R.string.yes) { dialog, which -> positive.invoke() }
+        .setNegativeButton(R.string.no) { dialog, which -> dialog.dismiss() }
+        .show()
+}
