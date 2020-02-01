@@ -1,13 +1,10 @@
 package com.adedom.library.extension
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.location.Geocoder
-import android.text.format.DateFormat
 import android.widget.TextView
 import android.widget.Toast
 import com.adedom.library.R
@@ -15,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.gms.maps.model.LatLng
-import java.util.*
 
 //context.getLocality(latLng)
 fun Context.getLocality(latLng: LatLng): String {
@@ -72,43 +68,6 @@ fun Context.readPrefFile(key: String): String {
 //context.imageMarker(R.drawable.ic_egg)
 fun Context.resourceBitmap(image: Int): Bitmap {
     return BitmapFactory.decodeResource(this.resources, image)
-}
-
-//context!!.dialogDatePicker { year, month, dayOfMonth -> }
-fun Context.dialogDatePicker(date: (Int, Int, Int) -> Unit) {
-    val c = Calendar.getInstance()
-    val year = c.get(Calendar.YEAR)
-    val month = c.get(Calendar.MONTH)
-    val day = c.get(Calendar.DAY_OF_MONTH)
-
-    val dpd = DatePickerDialog(
-        this,
-        DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-            date.invoke(year, month + 1, dayOfMonth)
-        },
-        year,
-        month,
-        day
-    )
-    dpd.show()
-}
-
-//context!!.dialogTimePicker { hourOfDay, minute -> }
-fun Context.dialogTimePicker(time: (Int, Int) -> Unit) {
-    val c = Calendar.getInstance()
-    val hour = c.get(Calendar.HOUR_OF_DAY)
-    val minute = c.get(Calendar.MINUTE)
-
-    val t = TimePickerDialog(
-        this,
-        TimePickerDialog.OnTimeSetListener { timePicker, hourOfDay, minute ->
-            time.invoke(hourOfDay, minute)
-        },
-        hour,
-        minute,
-        DateFormat.is24HourFormat(this)
-    )
-    t.show()
 }
 
 //context.loadBitmap(url, {onResourceReady}, {onLoadCleared})
