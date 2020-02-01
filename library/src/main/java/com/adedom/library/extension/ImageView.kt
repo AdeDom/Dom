@@ -18,6 +18,14 @@ fun ImageView.loadCircle(url: String) {
         .into(this)
 }
 
+fun ImageView.loadCircle(bitmap: Bitmap) {
+    Glide.with(this)
+        .load(bitmap)
+        .apply(RequestOptions.placeholderOf(R.drawable.ic_user_black))
+        .circleCrop()
+        .into(this)
+}
+
 fun ImageView.loadImage(url: String) {
     Glide.with(this)
         .load(url)
