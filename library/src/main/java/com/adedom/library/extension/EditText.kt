@@ -2,10 +2,11 @@ package com.adedom.library.extension
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Patterns
 import android.widget.EditText
 
 //if (mEtName.isEmpty(getString(R.string.error_room_name))) return
-fun EditText.isEmpty(error: String): Boolean {
+fun EditText.isEmpty(error: String = ""): Boolean {
     if (this.text.toString().trim().isEmpty()) {
         this.requestFocus()
         this.error = error
@@ -54,6 +55,15 @@ fun EditText.isMatching(editText: EditText, error: String = ""): Boolean {
     if (this.getContent() != editText.getContent()) {
         editText.requestFocus()
         editText.error = error
+        return true
+    }
+    return false
+}
+
+fun EditText.isEmail(error: String = ""): Boolean {
+    if (!Patterns.EMAIL_ADDRESS.matcher(this.getContent()).matches()) {
+        this.requestFocus()
+        this.error = error
         return true
     }
     return false
