@@ -17,7 +17,7 @@ import com.adedom.library.extension.failed
 
 abstract class PathiphonActivity : AppCompatActivity() {
 
-    private lateinit var mLocationSwitchStateReceiver: BroadcastReceiver
+    private lateinit var mBroadcastReceiver: BroadcastReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,7 @@ abstract class PathiphonActivity : AppCompatActivity() {
                 )
         }
 
-        mLocationSwitchStateReceiver = object : BroadcastReceiver() {
+        mBroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
                 if (LocationManager.PROVIDERS_CHANGED_ACTION == intent.action) {
                     val locationManager =
@@ -41,12 +41,12 @@ abstract class PathiphonActivity : AppCompatActivity() {
                         locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) //NETWORK_PROVIDER
 
                     if (!isGpsEnabled)
-                        locationSetting()
+                        settingLocation()
                 }
             }
         }
 
-        locationSetting()
+        settingLocation()
     }
 
     override fun onResume() {
@@ -89,13 +89,13 @@ abstract class PathiphonActivity : AppCompatActivity() {
         if (this) {
             val filter = IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION)
             filter.addAction(Intent.ACTION_PROVIDER_CHANGED)
-            registerReceiver(mLocationSwitchStateReceiver, filter)
+            registerReceiver(mBroadcastReceiver, filter)
         } else {
-            unregisterReceiver(mLocationSwitchStateReceiver)
+            unregisterReceiver(mBroadcastReceiver)
         }
     }
 
-    private fun locationSetting() {
+    private fun settingLocation() {
         val isLocationProviderEnabled = Settings.Secure.isLocationProviderEnabled(
             baseContext.contentResolver,
             LocationManager.GPS_PROVIDER
