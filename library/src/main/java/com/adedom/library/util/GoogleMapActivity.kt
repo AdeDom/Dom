@@ -9,7 +9,6 @@ import android.os.Handler
 import android.view.MenuItem
 import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import com.adedom.library.R
 import com.adedom.library.extension.dialogNegative
 import com.google.android.gms.common.ConnectionResult
@@ -26,7 +25,7 @@ import com.google.android.gms.maps.model.LatLng
 abstract class GoogleMapActivity(
     private val mapFragment: Int,
     private val interval: Long
-) : AppCompatActivity(),
+) : PathiphonActivity(),
     OnMapReadyCallback,
     GoogleApiClient.ConnectionCallbacks,
     GoogleApiClient.OnConnectionFailedListener,
@@ -53,8 +52,6 @@ abstract class GoogleMapActivity(
         sActivity = this
 
         mHandler = Handler()
-
-//        SettingPermissionAndLocation(sActivity, sContext)
 
     }
 
@@ -110,8 +107,6 @@ abstract class GoogleMapActivity(
     override fun onResume() {
         super.onResume()
 
-//        SettingPermissionAndLocation.locationListener(sActivity, true)
-
         mRunnable.run()
 
         if (mGoogleApiClient.isConnected) startLocationUpdate()
@@ -119,8 +114,6 @@ abstract class GoogleMapActivity(
 
     override fun onPause() {
         super.onPause()
-
-//        SettingPermissionAndLocation.locationListener(sActivity, false)
 
         mHandler.removeCallbacks(mRunnable)
 
