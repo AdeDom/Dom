@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adedom.library.util.ItemDecoration
 
 //mRecyclerView.recyclerVertical { it.adapter = mAdapter }
-fun RecyclerView.recyclerVertical(rv: (RecyclerView) -> Unit) {
+fun RecyclerView.recyclerVertical(isStackEnd: Boolean = false, rv: (RecyclerView) -> Unit) {
     this.apply {
-        layoutManager = LinearLayoutManager(context)
+        val lm = LinearLayoutManager(context)
+        lm.stackFromEnd = isStackEnd
+        layoutManager = lm
         setHasFixedSize(true)
         rv.invoke(this)
     }
