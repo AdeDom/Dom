@@ -7,9 +7,9 @@ import java.util.*
 
 //getDateTime(KEY_DATE)
 fun getDateTime(keyDateTime: String): String =
-    SimpleDateFormat(keyDateTime, Locale.ENGLISH).format(Calendar.getInstance().time)
+    SimpleDateFormat(keyDateTime, Locale.getDefault()).format(System.currentTimeMillis())
 
-fun getKeyUUID() = UUID.randomUUID().toString().replace("-", "")
+fun getKeyUUID(): String = UUID.randomUUID().toString().replace("-", "")
 
 var mediaPlayerMusic: MediaPlayer? = null
 //playMusic(baseContext, R.raw.music)
