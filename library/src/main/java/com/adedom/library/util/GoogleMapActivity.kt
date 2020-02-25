@@ -147,7 +147,7 @@ abstract class GoogleMapActivity(
     }
 
     @SuppressLint("MissingPermission")
-    override fun onMapReady(googleMap: GoogleMap) {
+    override fun onMapReady(googleMap: GoogleMap?) {
         sGoogleMap = googleMap
         sGoogleMap!!.isMyLocationEnabled = true
     }
