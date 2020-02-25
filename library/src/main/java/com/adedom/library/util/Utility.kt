@@ -1,6 +1,7 @@
 package com.adedom.library.util
 
 import android.content.Context
+import android.location.Location
 import android.media.MediaPlayer
 import java.text.SimpleDateFormat
 import java.util.*
@@ -40,3 +41,8 @@ fun stopMusic() {
 //playSound(baseContext, R.raw.sound)
 fun playSound(context: Context, music: Int) = MediaPlayer.create(context, music).start()
 
+fun distanceBetween(lat1: Double, lng1: Double, lat2: Double, lng2: Double): Float {
+    val distance = FloatArray(1)
+    Location.distanceBetween(lat1, lng1, lat2, lng2, distance)
+    return distance[0]
+}
