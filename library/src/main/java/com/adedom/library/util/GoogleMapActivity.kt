@@ -39,7 +39,7 @@ abstract class GoogleMapActivity(
     companion object {
         lateinit var sContext: Context
         lateinit var sActivity: Activity
-        lateinit var sGoogleMap: GoogleMap
+        var sGoogleMap: GoogleMap? = null
         var sLatLng = LatLng(13.5238, 100.7519)
     }
 
@@ -143,15 +143,15 @@ abstract class GoogleMapActivity(
 
     fun setCamera(zoom: Float, minZoom: Float = 1F, maxZoom: Float = 20F) {
         val cameraUpdate = CameraUpdateFactory.newLatLngZoom(sLatLng, zoom)
-        sGoogleMap.animateCamera(cameraUpdate)
-        sGoogleMap.setMinZoomPreference(minZoom)
-        sGoogleMap.setMaxZoomPreference(maxZoom)
+        sGoogleMap?.animateCamera(cameraUpdate)
+        sGoogleMap?.setMinZoomPreference(minZoom)
+        sGoogleMap?.setMaxZoomPreference(maxZoom)
     }
 
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         sGoogleMap = googleMap
-        sGoogleMap.isMyLocationEnabled = true
+        sGoogleMap?.isMyLocationEnabled = true
     }
 
     override fun onBackPressed() {
