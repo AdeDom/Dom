@@ -126,8 +126,8 @@ abstract class GoogleMapActivity(
 
     override fun onConnectionFailed(p0: ConnectionResult) {}
 
-    override fun onLocationChanged(location: Location) {
-        if (sLatLng.latitude == location.latitude &&
+    override fun onLocationChanged(location: Location?) {
+        if (sLatLng.latitude == location!!.latitude &&
             sLatLng.longitude == location.longitude
         ) return
 
@@ -141,15 +141,15 @@ abstract class GoogleMapActivity(
 
     fun setCamera(zoom: Float, minZoom: Float = 1F, maxZoom: Float = 20F) {
         val cameraUpdate = CameraUpdateFactory.newLatLngZoom(sLatLng, zoom)
-        sGoogleMap?.animateCamera(cameraUpdate)
-        sGoogleMap?.setMinZoomPreference(minZoom)
-        sGoogleMap?.setMaxZoomPreference(maxZoom)
+        sGoogleMap!!.animateCamera(cameraUpdate)
+        sGoogleMap!!.setMinZoomPreference(minZoom)
+        sGoogleMap!!.setMaxZoomPreference(maxZoom)
     }
 
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         sGoogleMap = googleMap
-        sGoogleMap?.isMyLocationEnabled = true
+        sGoogleMap!!.isMyLocationEnabled = true
     }
 
     override fun onBackPressed() {
