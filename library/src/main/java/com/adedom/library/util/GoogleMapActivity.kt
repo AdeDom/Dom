@@ -40,7 +40,7 @@ abstract class GoogleMapActivity(
         lateinit var sContext: Context
         lateinit var sActivity: Activity
         lateinit var sGoogleMap: GoogleMap
-        lateinit var sLatLng: LatLng
+        var sLatLng = LatLng(13.5238, 100.7519)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
